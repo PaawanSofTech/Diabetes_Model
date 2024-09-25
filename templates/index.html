@@ -1,0 +1,88 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #d9534f; /* Bootstrap Danger Color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="glucose">Glucose:</label>
+            <input type="number" name="glucose" required>
+
+            <label for="bloodpressure">Blood Pressure:</label>
+            <input type="number" name="bloodpressure" required>
+
+            <label for="bmi">BMI:</label>
+            <input type="number" step="any" name="bmi" required>
+
+            <label for="age">Age:</label>
+            <input type="number" name="age" required>
+
+            <button type="submit"><i class="fas fa-stethoscope"></i> Predict</button>
+        </form>
+        
+        <!-- Result Display Section -->
+        {% if result %}
+        <div class="result">
+            {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
